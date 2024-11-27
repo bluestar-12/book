@@ -1,12 +1,12 @@
 from queue import PriorityQueue
 
-# Dynamic Programming solution for 0/1 Knapsack problem
+
 def knapsack_dp(weights, values, capacity):
     n = len(values)
-    # Create a table to store results of subproblems
+   
     dp = [[0 for x in range(capacity + 1)] for x in range(n + 1)]
     
-    # Build table dp[][] in a bottom-up manner
+   
     for i in range(n + 1):
         for w in range(capacity + 1):
             if i == 0 or w == 0:
@@ -16,11 +16,11 @@ def knapsack_dp(weights, values, capacity):
             else:
                 dp[i][w] = dp[i - 1][w]
 
-    # The result is in dp[n][capacity]
+   
     return dp[n][capacity]
 
 
-# Backtracking solution for 0/1 Knapsack problem
+
 def knapsack_backtrack(weights, values, capacity, n):
     if n == 0 or capacity == 0:
         return 0
@@ -34,7 +34,7 @@ def knapsack_backtrack(weights, values, capacity, n):
         return max(include, exclude)
 
 
-# Branch and Bound solution for 0/1 Knapsack problem
+
 class Item:
     def __init__(self, value, weight):
         self.value = value
@@ -48,7 +48,7 @@ class Node:
         self.weight = weight
         self.bound = bound
     
-    # For priority queue to compare Nodes by bound (higher is better)
+    
     def __lt__(self, other):
         return self.bound > other.bound
 
@@ -111,7 +111,7 @@ def knapsack_branch_bound(weights, values, capacity):
     return maxProfit
 
 
-# Example usage for all three algorithms:
+
 values = [60, 100, 120]
 weights = [10, 20, 30]
 capacity = 50
