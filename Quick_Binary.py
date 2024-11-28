@@ -53,3 +53,15 @@ def choose_num(sorted_array):
         print("Invalid input! Please enter an integer.")
 
 choose_num(sorted_array)
+
+# Time Complexity
+# QuickSort - O(n log n) (best/average case)
+# O(n²) (worst case)
+
+# Binary Search - O(log n)
+
+# Space Complexity
+# QuickSort - O(log n) (best/average case)
+# O(n) (worst case)
+
+# Binary Search - O(1) (iterative) / O(log n) (recursive)
