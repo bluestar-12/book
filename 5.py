@@ -1,12 +1,9 @@
 from queue import PriorityQueue
 
-
 def knapsack_dp(weights, values, capacity):
     n = len(values)
-   
     dp = [[0 for x in range(capacity + 1)] for x in range(n + 1)]
     
-   
     for i in range(n + 1):
         for w in range(capacity + 1):
             if i == 0 or w == 0:
@@ -15,10 +12,8 @@ def knapsack_dp(weights, values, capacity):
                 dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w])
             else:
                 dp[i][w] = dp[i - 1][w]
-
-   
+    
     return dp[n][capacity]
-
 
 
 def knapsack_backtrack(weights, values, capacity, n):
@@ -34,7 +29,6 @@ def knapsack_backtrack(weights, values, capacity, n):
         return max(include, exclude)
 
 
-
 class Item:
     def __init__(self, value, weight):
         self.value = value
@@ -47,7 +41,6 @@ class Node:
         self.profit = profit
         self.weight = weight
         self.bound = bound
-    
     
     def __lt__(self, other):
         return self.bound > other.bound
@@ -111,12 +104,24 @@ def knapsack_branch_bound(weights, values, capacity):
     return maxProfit
 
 
+n = int(input("Enter the number of items: "))
 
-values = [60, 100, 120]
-weights = [10, 20, 30]
-capacity = 50
+weights = []
+values = []
 
-print("Dynamic Programming Result: ", knapsack_dp(weights, values, capacity))
-n = len(values)
+print("Enter the weights of the items:")
+for i in range(n):
+    weight = int(input(f"Weight of item {i + 1}: "))
+    weights.append(weight)
+
+print("Enter the values of the items:")
+for i in range(n):
+    value = int(input(f"Value of item {i + 1}: "))
+    values.append(value)
+
+capacity = int(input("Enter the capacity of the knapsack: "))
+
+
+print("\nDynamic Programming Result: ", knapsack_dp(weights, values, capacity))
 print("Backtracking Result: ", knapsack_backtrack(weights, values, capacity, n))
 print("Branch and Bound Result: ", knapsack_branch_bound(weights, values, capacity))
